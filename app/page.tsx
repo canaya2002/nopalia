@@ -55,7 +55,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="h-screen relative overflow-hidden fixed inset-0">
       {/* Fondo principal simplificado */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-green-800 to-lime-800"></div>
       
@@ -91,7 +91,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
 
       {/* Contenido Principal */}
-      <div className="relative flex flex-col min-h-screen px-4">
+      <div className="relative flex flex-col h-full px-4">
         <div className="flex-1 flex items-center justify-center">
           <div className={`text-center transform transition-all duration-2000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
@@ -259,12 +259,30 @@ export default function Home() {
           }
         }
         
-        /* Fix para evitar espacios en blanco en móvil */
-        @media (max-height: 600px) {
-          .min-h-screen {
-            min-height: 100vh;
-            height: 100vh;
+        /* Fix para dispositivos móviles - elimina espacios en blanco */
+        html, body {
+          overflow: hidden;
+          height: 100%;
+          position: fixed;
+          width: 100%;
+        }
+        
+        @supports (height: 100dvh) {
+          .h-screen {
+            height: 100dvh !important;
           }
+        }
+        
+        @media (max-height: 700px) {
+          .h-screen {
+            height: 100vh !important;
+            height: 100dvh !important;
+          }
+        }
+        
+        /* Prevenir scroll en cualquier dirección */
+        * {
+          overscroll-behavior: none;
         }
       `}</style>
     </div>
