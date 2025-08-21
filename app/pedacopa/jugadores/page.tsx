@@ -21,7 +21,6 @@ export default function JugadoresPage() {
 
   useEffect(() => {
     setIsLoaded(true)
-    // Cargar jugadores existentes si los hay
     const jugadoresGuardados = localStorage.getItem('nopal_jugadores')
     if (jugadoresGuardados) {
       try {
@@ -47,10 +46,8 @@ export default function JugadoresPage() {
       const nuevosJugadores = [...jugadores, nuevoJugador]
       setJugadores(nuevosJugadores)
       
-      // Guardar inmediatamente en localStorage
       localStorage.setItem('nopal_jugadores', JSON.stringify(nuevosJugadores))
       
-      // Limpiar formulario
       setNuevoNombre('')
       setNuevoGenero('hombre')
       setNuevasPreferencias('ambos')
@@ -67,7 +64,6 @@ export default function JugadoresPage() {
 
   const continuar = () => {
     if (jugadores.length >= 2) {
-      // Asegurar que los datos estén guardados
       localStorage.setItem('nopal_jugadores', JSON.stringify(jugadores))
       router.push('/pedacopa/niveles')
     }
@@ -79,36 +75,26 @@ export default function JugadoresPage() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
-      
-      {/* Fondo mejorado similar al anterior */}
+    <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
+      {/* Fondo original */}
       <div className="absolute inset-0 opacity-25">
-        {/* Círculos de fondo grandes */}
         <div className="absolute top-1/4 left-1/4 w-40 h-40 bg-yellow-400/8 rounded-full blur-2xl animate-pulse" style={{animationDuration: '4s'}}></div>
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-emerald-400/6 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}></div>
-        
-        {/* Partículas sutiles */}
         <div className="absolute top-20 left-10 w-2 h-2 bg-yellow-400/50 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
         <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-orange-400/40 rounded-full animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
         <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-lime-400/30 rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
         <div className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-amber-400/40 rounded-full animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3.5s'}}></div>
-        
-        {/* Líneas decorativas */}
         <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/15 to-transparent"></div>
         <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-emerald-400/15 to-transparent"></div>
       </div>
 
-      {/* Gradientes de profundidad */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30"></div>
 
-      <div className="relative min-h-screen flex flex-col">
-        
-        {/* Header elegante */}
+      <div className="relative flex flex-col h-full w-full min-h-full">
         <header className={`pt-12 sm:pt-16 md:pt-20 pb-8 text-center transform transition-all duration-1500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4">
             <div className="relative inline-block mb-6">
               <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/10 via-white/10 to-emerald-400/10 blur-xl rounded-lg"></div>
-              
               <h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4">
                 <span className="bg-gradient-to-r from-emerald-100 via-white to-lime-100 bg-clip-text text-transparent drop-shadow-xl">
                   Configurar Jugadores
@@ -121,20 +107,13 @@ export default function JugadoresPage() {
           </div>
         </header>
 
-        {/* Contenido principal */}
         <div className="flex-1 flex items-start justify-center px-4 sm:px-6 pb-8">
           <div className="w-full max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-            
             {/* Panel de agregar jugador */}
             <div className={`transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`} style={{animationDelay: '0.3s'}}>
               <div className="relative">
-                {/* Efectos de resplandor */}
                 <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/15 via-orange-500/20 to-amber-400/15 rounded-xl blur-lg opacity-50 hover:opacity-75 transition-all duration-500"></div>
-                
-                {/* Tarjeta principal */}
-                <div className="relative bg-gradient-to-br from-yellow-900/25 via-orange-900/20 to-amber-900/25 backdrop-blur-xl border border-yellow-400/30 rounded-xl overflow-hidden shadow-2xl">
-                  
-                  {/* Header */}
+                <div className="relative bg-gradient-to-br from-yellow-900/25 via-orange-900/20 to-amber-900/25 backdrop-blur-xl border border-yellow-400/30 rounded-xl shadow-2xl">
                   <div className="relative p-6 border-b border-yellow-400/20">
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5"></div>
                     <div className="relative flex items-center gap-4">
@@ -153,11 +132,7 @@ export default function JugadoresPage() {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Formulario */}
-                  <div className="p-6 space-y-6">
-                    
-                    {/* Campo nombre */}
+                  <div className="p-6 space-y-6 pb-6">
                     <div className="space-y-2">
                       <label className="block text-white font-semibold text-sm">
                         Nombre del jugador
@@ -173,11 +148,7 @@ export default function JugadoresPage() {
                         disabled={isSubmitting}
                       />
                     </div>
-
-                    {/* Selectores en grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      
-                      {/* Selector de género */}
                       <div className="space-y-3">
                         <label className="block text-white font-semibold text-sm text-center">
                           Género
@@ -207,8 +178,6 @@ export default function JugadoresPage() {
                           </button>
                         </div>
                       </div>
-
-                      {/* Selector de preferencias */}
                       <div className="space-y-3">
                         <label className="block text-white font-semibold text-sm text-center">
                           Le atraen
@@ -232,8 +201,6 @@ export default function JugadoresPage() {
                         </div>
                       </div>
                     </div>
-
-                    {/* Botón agregar */}
                     <button
                       onClick={agregarJugador}
                       disabled={!nuevoNombre.trim() || jugadores.length >= 12 || isSubmitting}
@@ -263,16 +230,10 @@ export default function JugadoresPage() {
               </div>
             </div>
 
-            {/* Panel de lista de jugadores */}
             <div className={`transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`} style={{animationDelay: '0.5s'}}>
               <div className="relative">
-                {/* Efectos de resplandor */}
                 <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400/15 via-lime-500/20 to-green-400/15 rounded-xl blur-lg opacity-50 hover:opacity-75 transition-all duration-500"></div>
-                
-                {/* Tarjeta principal */}
-                <div className="relative bg-gradient-to-br from-emerald-900/25 via-lime-900/20 to-green-900/25 backdrop-blur-xl border border-emerald-400/30 rounded-xl overflow-hidden shadow-2xl h-full">
-                  
-                  {/* Header */}
+                <div className="relative bg-gradient-to-br from-emerald-900/25 via-lime-900/20 to-green-900/25 backdrop-blur-xl border border-emerald-400/30 rounded-xl shadow-2xl h-full">
                   <div className="relative p-6 border-b border-emerald-400/20">
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-lime-500/5"></div>
                     <div className="relative flex items-center justify-between">
@@ -298,8 +259,6 @@ export default function JugadoresPage() {
                           </p>
                         </div>
                       </div>
-                      
-                      {/* Botón limpiar */}
                       {jugadores.length > 0 && (
                         <button
                           onClick={limpiarTodo}
@@ -310,9 +269,7 @@ export default function JugadoresPage() {
                       )}
                     </div>
                   </div>
-                  
-                  {/* Lista de jugadores o estado vacío */}
-                  <div className="p-6">
+                  <div className="p-6 pb-6">
                     {jugadores.length === 0 ? (
                       <div className="text-center py-12">
                         <div className="w-16 h-16 bg-emerald-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -371,23 +328,9 @@ export default function JugadoresPage() {
           </div>
         </div>
 
-        {/* Botones de navegación */}
         <div className={`p-6 border-t border-white/10 bg-black/20 backdrop-blur-md transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{animationDelay: '0.8s'}}>
-          <div className="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            
-            {/* Botón volver */}
-            <button
-              onClick={() => router.back()}
-              className="group relative bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 backdrop-blur-sm shadow-lg order-2 sm:order-1"
-            >
-              <span className="flex items-center gap-3">
-                <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span>
-                <span>Volver a Modos</span>
-              </span>
-            </button>
-
-            {/* Información y botón continuar */}
-            <div className="text-center order-1 sm:order-2">
+          <div className="max-w-4xl mx-auto flex justify-center items-center gap-4">
+            <div className="text-center">
               {jugadores.length < 2 && (
                 <p className="text-yellow-300 font-semibold mb-3 animate-pulse text-sm">
                   {jugadores.length === 0 ? 'Agrega al menos 2 jugadores' : 'Agrega 1 jugador más'}
@@ -413,18 +356,93 @@ export default function JugadoresPage() {
         </div>
       </div>
 
-      {/* Efectos ambientales */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent"></div>
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent"></div>
-      
-      {/* Efectos de esquinas */}
       <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-yellow-400/20 rounded-tl-lg"></div>
       <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-emerald-400/20 rounded-tr-lg"></div>
       <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-lime-400/20 rounded-bl-lg"></div>
       <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-cyan-400/20 rounded-br-lg"></div>
 
-      {/* Scrollbar personalizado */}
       <style jsx>{`
+        html, body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          position: fixed;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        .fixed {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100vh;
+          max-height: 100vh;
+          background-attachment: fixed;
+        }
+        
+        @supports (height: 100dvh) {
+          .fixed {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
+        }
+        
+        .h-full {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          min-height: 100%;
+        }
+        
+        .flex-1 {
+          flex: 1 1 auto;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          min-height: 0;
+        }
+        
+        @media (max-width: 640px) {
+          .flex-1 {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+        }
+        
+        .p-6 {
+          padding: 1.5rem;
+          padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 16px));
+        }
+        
+        * {
+          box-sizing: border-box;
+          overscroll-behavior: contain;
+        }
+        
+        @media (max-width: 640px) {
+          .fixed {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        
+        .animate-pulse {
+          animation: pulse 3s ease-in-out infinite;
+        }
+        
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }
