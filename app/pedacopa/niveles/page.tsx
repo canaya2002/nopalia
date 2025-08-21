@@ -18,7 +18,7 @@ const niveles = [
     intensidad: "Suave",
     colorPrimario: "from-green-400 to-emerald-600",
     colorSecundario: "from-green-500 to-emerald-700",
-    icono: "🏠",
+    icono: "home",
     ambiente: "Sala normal, música suave, luces prendidas. El ambiente es relajado y todos están conociendo las reglas.",
     minijuegos: [
       "Verdadero o Falso: Pierdes, bebes un trago",
@@ -40,7 +40,7 @@ const niveles = [
     intensidad: "Moderado",
     colorPrimario: "from-yellow-400 to-orange-500",
     colorSecundario: "from-yellow-500 to-orange-600",
-    icono: "🎵",
+    icono: "music",
     ambiente: "Luces bajitas, alguien ya sacó bocinas. La música empieza a subir y el ambiente se calienta.",
     minijuegos: [
       "La botella: Beso en la mejilla o shot",
@@ -62,7 +62,7 @@ const niveles = [
     intensidad: "Intenso",
     colorPrimario: "from-red-400 to-pink-600",
     colorSecundario: "from-red-500 to-pink-700",
-    icono: "🔥",
+    icono: "fire",
     ambiente: "Música alta, luces LED, gente bailando. El ambiente está caliente y todos están en confianza.",
     minijuegos: [
       "Yo Nunca Nunca: Si bebes 3 veces, haces un reto",
@@ -84,7 +84,7 @@ const niveles = [
     intensidad: "Extremo",
     colorPrimario: "from-purple-500 to-red-600",
     colorSecundario: "from-purple-600 to-red-700",
-    icono: "🌶️",
+    icono: "zap",
     ambiente: "Cuarto oscuro con neón, ropa en el sillón, nadie sabe la hora. El ambiente está al máximo.",
     minijuegos: [
       "Verdad extrema o reto fuerte",
@@ -106,7 +106,7 @@ const niveles = [
     intensidad: "Legendario",
     colorPrimario: "from-gray-600 to-black",
     colorSecundario: "from-gray-700 to-gray-900",
-    icono: "💀",
+    icono: "skull",
     ambiente: "Desorden total, luces prendidas, alguien en el suelo. El caos más divertido de la noche.",
     minijuegos: [
       "El Recuerdo Maldito: Adivina lo que hiciste anoche",
@@ -205,9 +205,9 @@ export default function NivelesPage() {
     return Array.from({ length: 5 }, (_, i) => (
       <div
         key={i}
-        className={`w-3 h-3 rounded-full transition-all duration-500 ${
+        className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${
           i < dificultad 
-            ? 'bg-yellow-400 shadow-lg shadow-yellow-400/50 scale-110' 
+            ? 'bg-amber-400 shadow-lg shadow-amber-400/50 scale-110' 
             : 'bg-gray-600 scale-90'
         }`}
         style={{ animationDelay: `${i * 100}ms` }}
@@ -215,10 +215,51 @@ export default function NivelesPage() {
     ))
   }
 
+  const getIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'home':
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+        )
+      case 'music':
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+        )
+      case 'fire':
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
+          </svg>
+        )
+      case 'zap':
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+          </svg>
+        )
+      case 'skull':
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.11 7.24.39.37.39.97 0 1.34C4.73 20.96 4.37 21 4 21h16c-.37 0-.73-.04-1.11-.42-.39-.37-.39-.97 0-1.34C20.8 17.41 22 14.85 22 12c0-5.52-4.48-10-10-10zM8.5 9c.83 0 1.5.67 1.5 1.5S9.33 12 8.5 12 7 11.33 7 10.5 7.67 9 8.5 9zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5S14.67 9 15.5 9zm-3.5 6c-1.33 0-2.42.84-2.83 2h5.66c-.41-1.16-1.5-2-2.83-2z"/>
+          </svg>
+        )
+      default:
+        return (
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+          </svg>
+        )
+    }
+  }
+
   const currentLevel = niveles[currentIndex]
 
   return (
-    <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
+    <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900 overflow-hidden">
       {/* Fondo mejorado con más elementos sutiles */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
@@ -262,8 +303,8 @@ export default function NivelesPage() {
             }`}>
               
               {/* Efectos de resplandor */}
-              <div className={`absolute -inset-2 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-20 rounded-2xl blur-lg group-hover:opacity-100 transition-all duration-500`}></div>
-              <div className={`absolute -inset-1 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-10 rounded-xl blur-md group-hover:opacity-100 transition-all duration-300`}></div>
+              <div className={`absolute -inset-2 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-20 rounded-2xl blur-lg group-hover:opacity-40 transition-all duration-500`}></div>
+              <div className={`absolute -inset-1 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-10 rounded-xl blur-md group-hover:opacity-30 transition-all duration-300`}></div>
               
               <div className={`relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden group-hover:border-white/50 transition-all duration-500 shadow-2xl`}>
                 
@@ -272,25 +313,25 @@ export default function NivelesPage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                   <div className="relative flex items-start justify-between mb-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 text-2xl">
-                        {currentLevel.icono}
+                      <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 text-white">
+                        {getIcon(currentLevel.icono)}
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="px-2 py-1 bg-white/20 border border-white/40 rounded-full text-white text-xs font-bold">
+                          <span className="px-3 py-1 bg-white/20 border border-white/40 rounded-full text-white text-xs font-bold tracking-wide">
                             NIVEL {currentLevel.id}
                           </span>
                           <div className="flex gap-1">
                             {getDifficultyStars(currentLevel.dificultad)}
                           </div>
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-black text-white">
+                        <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight">
                           {currentLevel.titulo}
                         </h2>
                       </div>
                     </div>
                   </div>
-                  <p className="relative text-white/90 font-semibold text-lg sm:text-xl italic">
+                  <p className="relative text-white/90 font-semibold text-lg sm:text-xl italic leading-relaxed">
                     "{currentLevel.subtitulo}"
                   </p>
                 </div>
@@ -298,38 +339,44 @@ export default function NivelesPage() {
                 {/* Contenido de la tarjeta */}
                 <div className="p-5 sm:p-7 space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/30 transition-colors duration-300">
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-white/30 transition-all duration-300 hover:bg-white/10">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 bg-yellow-400/80 rounded-lg flex items-center justify-center">
-                          <div className="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                        <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-lg flex items-center justify-center shadow-md">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
                         </div>
-                        <h4 className="text-white font-bold text-sm">Intensidad</h4>
+                        <h4 className="text-white font-bold text-sm tracking-wide">INTENSIDAD</h4>
                       </div>
-                      <p className="text-gray-300 text-xs leading-relaxed">
+                      <p className="text-gray-300 text-sm font-medium">
                         {currentLevel.intensidad}
                       </p>
                     </div>
-                    <div className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/30 transition-colors duration-300">
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-white/30 transition-all duration-300 hover:bg-white/10">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 bg-emerald-400/80 rounded-lg flex items-center justify-center">
-                          <div className="w-4 h-4 bg-emerald-400 rounded-full"></div>
+                        <div className="w-8 h-8 bg-gradient-to-br from-emerald-400 to-green-500 rounded-lg flex items-center justify-center shadow-md">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+                          </svg>
                         </div>
-                        <h4 className="text-white font-bold text-sm">Duración</h4>
+                        <h4 className="text-white font-bold text-sm tracking-wide">DURACIÓN</h4>
                       </div>
-                      <p className="text-gray-300 text-xs leading-relaxed">
+                      <p className="text-gray-300 text-sm font-medium">
                         {currentLevel.duracion}
                       </p>
                     </div>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-black/20 to-black/10 rounded-lg p-4 sm:p-5 border border-white/20">
-                    <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-                      <div className="w-5 h-5 bg-white/80 rounded flex items-center justify-center">
-                        <div className="w-2 h-2 bg-black rounded-full"></div>
+                  <div className="bg-gradient-to-r from-black/30 to-black/10 rounded-xl p-5 border border-white/20 backdrop-blur-sm">
+                    <h4 className="text-white font-bold mb-3 flex items-center gap-3">
+                      <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-md">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
                       </div>
-                      Descripción
+                      <span className="tracking-wide">DESCRIPCIÓN</span>
                     </h4>
-                    <p className="text-gray-200 text-sm leading-relaxed">
+                    <p className="text-gray-200 text-sm leading-relaxed font-medium">
                       {currentLevel.descripcion}
                     </p>
                   </div>
@@ -337,9 +384,9 @@ export default function NivelesPage() {
                   {/* Botón expandir/contraer */}
                   <button
                     onClick={() => setExpandedCard(!expandedCard)}
-                    className="w-full flex items-center justify-center gap-2 text-white/80 hover:text-white font-medium py-2 transition-all duration-300 hover:bg-white/10 rounded-lg"
+                    className="w-full flex items-center justify-center gap-2 text-white/80 hover:text-white font-medium py-3 transition-all duration-300 hover:bg-white/10 rounded-xl border border-white/10 hover:border-white/30"
                   >
-                    <span>{expandedCard ? 'Ver menos' : 'Ver detalles'}</span>
+                    <span className="tracking-wide">{expandedCard ? 'Ocultar detalles' : 'Ver detalles'}</span>
                     <svg 
                       className={`w-5 h-5 transition-transform duration-300 ${expandedCard ? 'rotate-180' : ''}`} 
                       fill="none" 
@@ -356,65 +403,75 @@ export default function NivelesPage() {
                   }`}>
                     
                     {/* Ambiente */}
-                    <div className="bg-blue-500/10 border border-blue-400/30 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 bg-blue-400/80 rounded-lg flex items-center justify-center">
-                          <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-400/30 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center shadow-md">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
                         </div>
-                        <h4 className="text-blue-400 font-bold">Ambiente</h4>
+                        <h4 className="text-blue-300 font-bold tracking-wide">AMBIENTE</h4>
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.ambiente}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed font-medium">{currentLevel.ambiente}</p>
                     </div>
 
                     {/* Minijuegos */}
-                    <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-6 h-6 bg-green-400/80 rounded-lg flex items-center justify-center">
-                          <div className="w-3 h-3 bg-green-400 rounded-lg animate-pulse"></div>
+                    <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-400/30 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-7 h-7 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center shadow-md">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21,6V8H3V6H21M3,18H12V16H3V18M3,13H21V11H3V13Z"/>
+                          </svg>
                         </div>
-                        <h4 className="text-green-400 font-bold">Minijuegos ({currentLevel.minijuegos.length})</h4>
+                        <h4 className="text-green-300 font-bold tracking-wide">MINIJUEGOS ({currentLevel.minijuegos.length})</h4>
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-3">
                         {currentLevel.minijuegos.map((juego, index) => (
-                          <div key={index} className="flex items-start gap-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0 animate-pulse" style={{animationDelay: `${index * 0.2}s`}}></div>
-                            <span className="text-gray-300 text-sm leading-relaxed">{juego}</span>
+                          <div key={index} className="flex items-start gap-3 p-2 rounded-lg bg-white/5 backdrop-blur-sm">
+                            <div className="w-2 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mt-2 flex-shrink-0 shadow-sm"></div>
+                            <span className="text-gray-300 text-sm leading-relaxed font-medium">{juego}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Estado */}
-                    <div className="bg-orange-500/10 border border-orange-400/30 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-6 h-6 bg-orange-400/80 rounded-lg flex items-center justify-center">
-                          <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                    <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-400/30 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-7 h-7 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center shadow-md">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          </svg>
                         </div>
-                        <h4 className="text-orange-400 font-bold">Estado del Jugador</h4>
+                        <h4 className="text-orange-300 font-bold tracking-wide">ESTADO DEL JUGADOR</h4>
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.estado}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed font-medium">{currentLevel.estado}</p>
                     </div>
                   </div>
 
                   {/* Botón de selección */}
                   <button
                     onClick={() => handleSeleccionarNivel(currentLevel.id)}
-                    className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
+                    className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden shadow-lg ${
                       nivelSeleccionado === currentLevel.id
-                        ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-400/50'
-                        : 'bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:border-white/40'
+                        ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-yellow-400/50 scale-105'
+                        : 'bg-gradient-to-r from-white/10 to-white/5 text-white hover:from-white/20 hover:to-white/10 border border-white/20 hover:border-white/40'
                     }`}
                   >
-                    <span className="relative flex items-center justify-center gap-2">
+                    <span className="relative flex items-center justify-center gap-3">
                       {nivelSeleccionado === currentLevel.id ? (
                         <>
-                          <span>✓</span>
-                          <span>SELECCIONADO</span>
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                          </svg>
+                          <span className="tracking-wide">SELECCIONADO</span>
                         </>
                       ) : (
                         <>
-                          <span>Seleccionar Nivel</span>
-                          <span className="text-xl">{currentLevel.icono}</span>
+                          <span className="tracking-wide">SELECCIONAR NIVEL</span>
+                          <div className="text-white">
+                            {getIcon(currentLevel.icono)}
+                          </div>
                         </>
                       )}
                     </span>
@@ -424,7 +481,9 @@ export default function NivelesPage() {
                 {/* Indicador de selección */}
                 {nivelSeleccionado === currentLevel.id && (
                   <div className="absolute top-3 right-3 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                    <span className="text-black text-sm font-bold">✓</span>
+                    <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
                   </div>
                 )}
               </div>
@@ -440,10 +499,10 @@ export default function NivelesPage() {
               <button
                 onClick={prevLevel}
                 disabled={currentIndex === 0 || isTransitioning}
-                className={`p-3 rounded-full transition-all duration-300 ${
+                className={`p-3 rounded-full transition-all duration-300 shadow-lg ${
                   currentIndex === 0 || isTransitioning
                     ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
-                    : 'bg-white/20 text-white hover:bg-white/30'
+                    : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110'
                 }`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -455,17 +514,19 @@ export default function NivelesPage() {
                 {nivelSeleccionado ? (
                   <button
                     onClick={handleComenzarJuego}
-                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg"
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:scale-105"
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-2 tracking-wide">
                       <span>COMENZAR</span>
-                      <span>🚀</span>
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
                     </span>
                   </button>
                 ) : (
                   <button
                     disabled
-                    className="bg-gray-600/40 text-gray-400 font-bold py-3 px-8 rounded-xl cursor-not-allowed"
+                    className="bg-gray-600/40 text-gray-400 font-bold py-3 px-8 rounded-xl cursor-not-allowed tracking-wide"
                   >
                     Selecciona un Nivel
                   </button>
@@ -475,10 +536,10 @@ export default function NivelesPage() {
               <button
                 onClick={nextLevel}
                 disabled={currentIndex === niveles.length - 1 || isTransitioning}
-                className={`p-3 rounded-full transition-all duration-300 ${
+                className={`p-3 rounded-full transition-all duration-300 shadow-lg ${
                   currentIndex === niveles.length - 1 || isTransitioning
                     ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
-                    : 'bg-white/20 text-white hover:bg-white/30'
+                    : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110'
                 }`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -488,16 +549,6 @@ export default function NivelesPage() {
             </div>
 
             {/* Advertencia */}
-            <div className="bg-red-900/40 border border-red-400/40 rounded-xl p-3 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-red-500/50 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 animate-pulse">
-                  !
-                </div>
-                <p className="text-red-200 text-sm">
-                  <strong>+18 años.</strong> Bebe responsablemente y respeta límites.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
