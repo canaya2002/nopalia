@@ -189,7 +189,6 @@ export default function NivelesPage() {
     const deltaX = touchStartX.current - touchEndX
     const deltaY = touchStartY.current - touchEndY
     
-    // Solo actuar si el movimiento horizontal es mayor que el vertical
     if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
       if (deltaX > 0) {
         nextLevel()
@@ -219,450 +218,342 @@ export default function NivelesPage() {
   const currentLevel = niveles[currentIndex]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900 relative overflow-hidden">
-      
-      {/* Fondo animado con partículas */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Círculos de fondo principales */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-red-400/8 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-purple-400/6 rounded-full blur-2xl animate-float-slow"></div>
-        
-        {/* Partículas flotantes dinámicas */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-particle opacity-60"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`,
-            }}
-          >
-            <div className={`w-2 h-2 bg-gradient-to-r ${currentLevel.colorPrimario} rounded-full shadow-lg`}></div>
-          </div>
-        ))}
-        
-        {/* Líneas de energía */}
-        <div className="absolute top-1/4 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent animate-slide-fast"></div>
-        <div className="absolute bottom-1/4 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-red-400/30 to-transparent animate-slide-slow"></div>
+    <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
+      {/* Fondo mejorado con más elementos sutiles */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-400/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-yellow-400/60 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
+        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-orange-400/50 rounded-full animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+        <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-lime-400/40 rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
+        <div className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-amber-400/50 rounded-full animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3.5s'}}></div>
+        <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/20 to-transparent"></div>
+        <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-emerald-400/20 to-transparent"></div>
       </div>
 
-      {/* Efecto de resplandor del nivel actual */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${currentLevel.colorPrimario} opacity-5 transition-all duration-1000`}></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30"></div>
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/20"></div>
 
-      <div className="relative min-h-screen flex flex-col">
+      {/* Layout principal con scroll habilitado */}
+      <div className="relative h-full flex flex-col">
         
-        {/* Header con animación de entrada */}
-        <header className={`pt-6 pb-4 text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-20'}`}>
-          <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-white animate-glow">
-            Elige tu Aventura
-          </h1>
-          <p className="text-emerald-200 text-lg mb-4 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            Desliza o usa las flechas para navegar
-          </p>
-          
-          {/* Info jugadores con animación */}
-          <div className="inline-flex items-center gap-3 bg-emerald-900/60 backdrop-blur-lg border border-emerald-400/40 rounded-xl px-4 py-2 animate-scale-in" style={{animationDelay: '0.6s'}}>
-            <div className="w-8 h-8 bg-gradient-to-r from-emerald-400 to-lime-500 rounded-full flex items-center justify-center text-white font-bold text-sm animate-pulse">
-              {jugadores.length}
+        {/* Header fijo */}
+        <header className={`flex-shrink-0 pt-8 sm:pt-12 pb-6 text-center transform transition-all duration-1500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="relative inline-block">
+              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/10 via-white/10 to-emerald-400/10 blur-xl rounded-lg"></div>
+              <h1 className="relative text-3xl sm:text-4xl md:text-5xl font-black">
+                <span className="bg-gradient-to-r from-emerald-100 via-white to-lime-100 bg-clip-text text-transparent drop-shadow-xl">
+                  Elige tu Nivel
+                </span>
+              </h1>
             </div>
-            <span className="text-white font-medium">
-              {jugadores.length} {jugadores.length === 1 ? 'Jugador' : 'Jugadores'} Listos
-            </span>
           </div>
         </header>
 
-        {/* Indicador de nivel y navegación */}
-        <div className="flex justify-center items-center mb-4 gap-4">
-          {/* Botón anterior */}
-          <button
-            onClick={prevLevel}
-            disabled={currentIndex === 0 || isTransitioning}
-            className={`p-3 rounded-full transition-all duration-300 ${
-              currentIndex === 0 || isTransitioning
-                ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
-                : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110 active:scale-95'
-            }`}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Indicadores de nivel */}
-          <div className="flex gap-2">
-            {niveles.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => navigateToLevel(index)}
-                disabled={isTransitioning}
-                className={`transition-all duration-500 rounded-full ${
-                  index === currentIndex
-                    ? 'w-8 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 shadow-lg shadow-yellow-400/50'
-                    : 'w-3 h-3 bg-white/40 hover:bg-white/60 hover:scale-125'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Botón siguiente */}
-          <button
-            onClick={nextLevel}
-            disabled={currentIndex === niveles.length - 1 || isTransitioning}
-            className={`p-3 rounded-full transition-all duration-300 ${
-              currentIndex === niveles.length - 1 || isTransitioning
-                ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
-                : 'bg-white/20 text-white hover:bg-white/30 hover:scale-110 active:scale-95'
-            }`}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Tarjeta principal del nivel actual */}
-        <div 
-          className="flex-1 px-4 pb-4"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div className={`relative max-w-md mx-auto h-full transition-all duration-500 ${
-            isTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
-          }`}>
-            
-            {/* Efecto de resplandor de la tarjeta */}
-            {nivelSeleccionado === currentLevel.id && (
-              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/30 via-orange-500/40 to-yellow-400/30 rounded-3xl blur-xl animate-pulse-slow"></div>
-            )}
-            
-            {/* Tarjeta principal */}
-            <div className={`relative bg-gray-900/95 backdrop-blur-xl border-2 rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 h-full ${
-              nivelSeleccionado === currentLevel.id 
-                ? 'border-yellow-400 shadow-yellow-400/30 scale-105' 
-                : 'border-white/30 hover:border-white/50'
+        {/* Contenido principal con scroll */}
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 pb-4"
+             onTouchStart={handleTouchStart}
+             onTouchEnd={handleTouchEnd}>
+          <div className="max-w-lg mx-auto">
+            {/* Tarjeta principal del nivel actual */}
+            <div className={`group relative cursor-pointer transform transition-all duration-700 mb-6 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'} ${
+              isTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
             }`}>
               
-              {/* Header de la tarjeta con gradiente del nivel */}
-              <div className={`relative p-6 bg-gradient-to-br ${currentLevel.colorPrimario} text-white overflow-hidden`}>
-                {/* Partículas en el header */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute animate-float-header opacity-30"
-                      style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 100}%`,
-                        animationDelay: `${Math.random() * 3}s`,
-                      }}
-                    >
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  ))}
-                </div>
+              {/* Efectos de resplandor */}
+              <div className={`absolute -inset-2 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-20 rounded-2xl blur-lg group-hover:opacity-100 transition-all duration-500`}></div>
+              <div className={`absolute -inset-1 bg-gradient-to-r ${currentLevel.colorPrimario} opacity-10 rounded-xl blur-md group-hover:opacity-100 transition-all duration-300`}></div>
+              
+              <div className={`relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden group-hover:border-white/50 transition-all duration-500 shadow-2xl`}>
                 
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-2xl font-bold border border-white/30 animate-bounce-soft">
-                        {currentLevel.id}
-                      </div>
-                      <div className="text-4xl animate-bounce-soft" style={{animationDelay: '0.2s'}}>
+                {/* Header de la tarjeta con gradiente del nivel */}
+                <div className={`relative p-5 sm:p-7 border-b border-white/20 bg-gradient-to-br ${currentLevel.colorPrimario}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+                  <div className="relative flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 text-2xl">
                         {currentLevel.icono}
                       </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2 py-1 bg-white/20 border border-white/40 rounded-full text-white text-xs font-bold">
+                            NIVEL {currentLevel.id}
+                          </span>
+                          <div className="flex gap-1">
+                            {getDifficultyStars(currentLevel.dificultad)}
+                          </div>
+                        </div>
+                        <h2 className="text-2xl sm:text-3xl font-black text-white">
+                          {currentLevel.titulo}
+                        </h2>
+                      </div>
                     </div>
-                    <div className="flex gap-1">
-                      {getDifficultyStars(currentLevel.dificultad)}
+                  </div>
+                  <p className="relative text-white/90 font-semibold text-lg sm:text-xl italic">
+                    "{currentLevel.subtitulo}"
+                  </p>
+                </div>
+                
+                {/* Contenido de la tarjeta */}
+                <div className="p-5 sm:p-7 space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/30 transition-colors duration-300">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 bg-yellow-400/80 rounded-lg flex items-center justify-center">
+                          <div className="w-4 h-4 bg-yellow-400 rounded-sm"></div>
+                        </div>
+                        <h4 className="text-white font-bold text-sm">Intensidad</h4>
+                      </div>
+                      <p className="text-gray-300 text-xs leading-relaxed">
+                        {currentLevel.intensidad}
+                      </p>
+                    </div>
+                    <div className="bg-white/5 rounded-lg p-4 border border-white/10 hover:border-white/30 transition-colors duration-300">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 bg-emerald-400/80 rounded-lg flex items-center justify-center">
+                          <div className="w-4 h-4 bg-emerald-400 rounded-full"></div>
+                        </div>
+                        <h4 className="text-white font-bold text-sm">Duración</h4>
+                      </div>
+                      <p className="text-gray-300 text-xs leading-relaxed">
+                        {currentLevel.duracion}
+                      </p>
                     </div>
                   </div>
                   
-                  <div className="space-y-2">
-                    <h3 className="text-2xl sm:text-3xl font-bold animate-slide-in-right">{currentLevel.titulo}</h3>
-                    <p className="text-lg italic opacity-90 animate-slide-in-right" style={{animationDelay: '0.1s'}}>
-                      "{currentLevel.subtitulo}"
+                  <div className="bg-gradient-to-r from-black/20 to-black/10 rounded-lg p-4 sm:p-5 border border-white/20">
+                    <h4 className="text-white font-bold mb-3 flex items-center gap-2">
+                      <div className="w-5 h-5 bg-white/80 rounded flex items-center justify-center">
+                        <div className="w-2 h-2 bg-black rounded-full"></div>
+                      </div>
+                      Descripción
+                    </h4>
+                    <p className="text-gray-200 text-sm leading-relaxed">
+                      {currentLevel.descripcion}
                     </p>
                   </div>
-                  
-                  <div className="flex items-center gap-3 mt-4">
-                    <span className={`px-3 py-1 rounded-full text-sm font-bold bg-white/20 backdrop-blur-sm border border-white/30 animate-fade-in ${
-                      currentLevel.intensidad === 'Suave' ? 'text-green-100' :
-                      currentLevel.intensidad === 'Moderado' ? 'text-yellow-100' :
-                      currentLevel.intensidad === 'Intenso' ? 'text-red-100' :
-                      currentLevel.intensidad === 'Extremo' ? 'text-purple-100' :
-                      'text-gray-100'
-                    }`}>
-                      {currentLevel.intensidad}
-                    </span>
-                    <div className="flex gap-2 text-sm">
-                      <span className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/20 animate-fade-in" style={{animationDelay: '0.2s'}}>
-                        ⏱️ {currentLevel.duracion}
-                      </span>
-                      <span className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/20 animate-fade-in" style={{animationDelay: '0.3s'}}>
-                        👥 {currentLevel.participantes}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Contenido scrolleable */}
-              <div className="p-6 space-y-4 overflow-y-auto flex-1" style={{maxHeight: 'calc(100vh - 400px)'}}>
-                
-                {/* Descripción principal */}
-                <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                  <p className="text-gray-300 text-base leading-relaxed">{currentLevel.descripcion}</p>
-                </div>
 
-                {/* Botón expandir/contraer */}
-                <button
-                  onClick={() => setExpandedCard(!expandedCard)}
-                  className="w-full flex items-center justify-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium py-2 transition-all duration-300 hover:bg-emerald-400/10 rounded-lg"
-                >
-                  <span>{expandedCard ? 'Ver menos' : 'Ver detalles'}</span>
-                  <svg 
-                    className={`w-5 h-5 transition-transform duration-300 ${expandedCard ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
+                  {/* Botón expandir/contraer */}
+                  <button
+                    onClick={() => setExpandedCard(!expandedCard)}
+                    className="w-full flex items-center justify-center gap-2 text-white/80 hover:text-white font-medium py-2 transition-all duration-300 hover:bg-white/10 rounded-lg"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {/* Contenido expandido con animación */}
-                <div className={`space-y-4 transition-all duration-500 overflow-hidden ${
-                  expandedCard ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                }`}>
+                    <span>{expandedCard ? 'Ver menos' : 'Ver detalles'}</span>
+                    <svg 
+                      className={`w-5 h-5 transition-transform duration-300 ${expandedCard ? 'rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                   
-                  {/* Ambiente */}
-                  <div className="bg-blue-500/10 border border-blue-400/30 rounded-xl p-4 animate-slide-in-up">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 bg-blue-400/40 rounded-lg flex items-center justify-center">
-                        <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                      </div>
-                      <h4 className="text-blue-400 font-bold">🌅 Ambiente</h4>
-                    </div>
-                    <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.ambiente}</p>
-                  </div>
-
-                  {/* Minijuegos */}
-                  <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4 animate-slide-in-up" style={{animationDelay: '0.1s'}}>
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-6 h-6 bg-green-400/40 rounded-lg flex items-center justify-center">
-                        <div className="w-3 h-3 bg-green-400 rounded-lg animate-pulse"></div>
-                      </div>
-                      <h4 className="text-green-400 font-bold">🎮 Minijuegos ({currentLevel.minijuegos.length})</h4>
-                    </div>
-                    <div className="space-y-2">
-                      {currentLevel.minijuegos.map((juego, index) => (
-                        <div key={index} className="flex items-start gap-2 animate-fade-in" style={{animationDelay: `${0.2 + index * 0.1}s`}}>
-                          <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0 animate-pulse" style={{animationDelay: `${index * 0.2}s`}}></div>
-                          <span className="text-gray-300 text-sm leading-relaxed">{juego}</span>
+                  {/* Contenido expandido */}
+                  <div className={`space-y-4 transition-all duration-500 ${
+                    expandedCard ? 'max-h-none opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                  }`}>
+                    
+                    {/* Ambiente */}
+                    <div className="bg-blue-500/10 border border-blue-400/30 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 bg-blue-400/80 rounded-lg flex items-center justify-center">
+                          <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Estado */}
-                  <div className="bg-orange-500/10 border border-orange-400/30 rounded-xl p-4 animate-slide-in-up" style={{animationDelay: '0.2s'}}>
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-6 h-6 bg-orange-400/40 rounded-lg flex items-center justify-center">
-                        <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                        <h4 className="text-blue-400 font-bold">Ambiente</h4>
                       </div>
-                      <h4 className="text-orange-400 font-bold">😄 Estado del Jugador</h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.ambiente}</p>
                     </div>
-                    <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.estado}</p>
+
+                    {/* Minijuegos */}
+                    <div className="bg-green-500/10 border border-green-400/30 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-6 h-6 bg-green-400/80 rounded-lg flex items-center justify-center">
+                          <div className="w-3 h-3 bg-green-400 rounded-lg animate-pulse"></div>
+                        </div>
+                        <h4 className="text-green-400 font-bold">Minijuegos ({currentLevel.minijuegos.length})</h4>
+                      </div>
+                      <div className="space-y-2">
+                        {currentLevel.minijuegos.map((juego, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0 animate-pulse" style={{animationDelay: `${index * 0.2}s`}}></div>
+                            <span className="text-gray-300 text-sm leading-relaxed">{juego}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Estado */}
+                    <div className="bg-orange-500/10 border border-orange-400/30 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 bg-orange-400/80 rounded-lg flex items-center justify-center">
+                          <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                        </div>
+                        <h4 className="text-orange-400 font-bold">Estado del Jugador</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm leading-relaxed">{currentLevel.estado}</p>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Botón de selección */}
-              <div className="p-6 pt-0">
-                <button
-                  onClick={() => handleSeleccionarNivel(currentLevel.id)}
-                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
-                    nivelSeleccionado === currentLevel.id
-                      ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-400/50 animate-pulse-slow'
-                      : 'bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:border-white/40 hover:scale-105'
-                  }`}
-                >
-                  {nivelSeleccionado === currentLevel.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 animate-shimmer"></div>
-                  )}
-                  <span className="relative flex items-center justify-center gap-2">
-                    {nivelSeleccionado === currentLevel.id ? (
-                      <>
-                        <span className="animate-bounce">✓</span>
-                        <span>SELECCIONADO</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Seleccionar Nivel</span>
-                        <span className="text-xl">{currentLevel.icono}</span>
-                      </>
-                    )}
-                  </span>
-                </button>
-              </div>
-
-              {/* Indicador de selección superior */}
-              {nivelSeleccionado === currentLevel.id && (
-                <div className="absolute top-3 right-3 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                  <span className="text-black text-sm font-bold">✓</span>
+                  {/* Botón de selección */}
+                  <button
+                    onClick={() => handleSeleccionarNivel(currentLevel.id)}
+                    className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 relative overflow-hidden ${
+                      nivelSeleccionado === currentLevel.id
+                        ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-400/50'
+                        : 'bg-white/10 text-white hover:bg-white/20 border border-white/20 hover:border-white/40'
+                    }`}
+                  >
+                    <span className="relative flex items-center justify-center gap-2">
+                      {nivelSeleccionado === currentLevel.id ? (
+                        <>
+                          <span>✓</span>
+                          <span>SELECCIONADO</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Seleccionar Nivel</span>
+                          <span className="text-xl">{currentLevel.icono}</span>
+                        </>
+                      )}
+                    </span>
+                  </button>
                 </div>
-              )}
+
+                {/* Indicador de selección */}
+                {nivelSeleccionado === currentLevel.id && (
+                  <div className="absolute top-3 right-3 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                    <span className="text-black text-sm font-bold">✓</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Advertencia animada */}
-        <div className="px-4 py-3 animate-fade-in-up" style={{animationDelay: '0.8s'}}>
-          <div className="max-w-md mx-auto bg-red-900/40 border border-red-400/40 rounded-xl p-3 backdrop-blur-sm">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-red-500/50 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 animate-pulse">
-                !
+        {/* Footer fijo en la parte inferior */}
+        <div className="flex-shrink-0 p-4 bg-black/20 backdrop-blur-sm border-t border-white/10">
+          <div className="max-w-lg mx-auto">
+            {/* Navegación de flechas */}
+            <div className="flex justify-between items-center mb-4">
+              <button
+                onClick={prevLevel}
+                disabled={currentIndex === 0 || isTransitioning}
+                className={`p-3 rounded-full transition-all duration-300 ${
+                  currentIndex === 0 || isTransitioning
+                    ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
+                    : 'bg-white/20 text-white hover:bg-white/30'
+                }`}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <div className="text-center">
+                {nivelSeleccionado ? (
+                  <button
+                    onClick={handleComenzarJuego}
+                    className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span>COMENZAR</span>
+                      <span>🚀</span>
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    disabled
+                    className="bg-gray-600/40 text-gray-400 font-bold py-3 px-8 rounded-xl cursor-not-allowed"
+                  >
+                    Selecciona un Nivel
+                  </button>
+                )}
               </div>
-              <p className="text-red-200 text-sm">
-                <strong>+18 años.</strong> Bebe responsablemente y respeta límites.
-              </p>
+
+              <button
+                onClick={nextLevel}
+                disabled={currentIndex === niveles.length - 1 || isTransitioning}
+                className={`p-3 rounded-full transition-all duration-300 ${
+                  currentIndex === niveles.length - 1 || isTransitioning
+                    ? 'bg-gray-700/50 text-gray-500 cursor-not-allowed'
+                    : 'bg-white/20 text-white hover:bg-white/30'
+                }`}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
-          </div>
-        </div>
 
-        {/* Controles de navegación */}
-        <div className="p-4 bg-black/20 backdrop-blur-sm border-t border-white/10 animate-fade-in-up" style={{animationDelay: '1s'}}>
-          <div className="max-w-md mx-auto flex justify-between items-center gap-4">
-            
-            <button
-              onClick={() => router.back()}
-              className="bg-white/20 hover:bg-white/30 text-white font-medium py-3 px-6 rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              ← Volver
-            </button>
-
-            <div className="text-center">
-              {nivelSeleccionado ? (
-                <button
-                  onClick={handleComenzarJuego}
-                  className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 animate-pulse-slow"
-                >
-                  🚀 ¡Comenzar!
-                </button>
-              ) : (
-                <button
-                  disabled
-                  className="bg-gray-600/40 text-gray-400 font-bold py-3 px-6 rounded-xl cursor-not-allowed"
-                >
-                  Selecciona un Nivel
-                </button>
-              )}
+            {/* Advertencia */}
+            <div className="bg-red-900/40 border border-red-400/40 rounded-xl p-3 backdrop-blur-sm">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-red-500/50 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0 animate-pulse">
+                  !
+                </div>
+                <p className="text-red-200 text-sm">
+                  <strong>+18 años.</strong> Bebe responsablemente y respeta límites.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* CSS personalizado para animaciones */}
+      {/* Elementos decorativos */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent"></div>
+      <div className="absolute top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-yellow-400/20 rounded-tl-lg"></div>
+      <div className="absolute top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-emerald-400/20 rounded-tr-lg"></div>
+      <div className="absolute bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-lime-400/20 rounded-bl-lg"></div>
+      <div className="absolute bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-cyan-400/20 rounded-br-lg"></div>
+
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(5deg); }
+        html, body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          position: fixed;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
         }
         
-        @keyframes float-delayed {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(-3deg); }
+        .fixed {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100vh;
+          max-height: 100vh;
+          background-attachment: fixed;
         }
         
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-25px) rotate(8deg); }
+        @supports (height: 100dvh) {
+          .fixed {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
         }
         
-        @keyframes particle {
-          0% { transform: translateY(0px) translateX(0px) rotate(0deg) scale(0.8); opacity: 0.3; }
-          50% { transform: translateY(-30px) translateX(20px) rotate(180deg) scale(1.2); opacity: 0.8; }
-          100% { transform: translateY(-60px) translateX(-10px) rotate(360deg) scale(0.6); opacity: 0.2; }
+        * {
+          box-sizing: border-box;
+          overscroll-behavior: contain;
         }
         
-        @keyframes slide-fast {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
         }
         
-        @keyframes slide-slow {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
+        .animate-pulse {
+          animation: pulse 3s ease-in-out infinite;
         }
-        
-        @keyframes glow {
-          0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-          50% { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5); }
-        }
-        
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes scale-in {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes slide-in-right {
-          from { opacity: 0; transform: translateX(20px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes slide-in-up {
-          from { opacity: 0; transform: translateY(15px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fade-in {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes bounce-soft {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
-        }
-        
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        
-        @keyframes float-header {
-          0%, 100% { transform: translateY(0px) translateX(0px); }
-          50% { transform: translateY(-10px) translateX(5px); }
-        }
-        
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-float-delayed { animation: float-delayed 7s ease-in-out infinite 1s; }
-        .animate-float-slow { animation: float-slow 8s ease-in-out infinite 2s; }
-        .animate-particle { animation: particle 4s ease-in-out infinite; }
-        .animate-slide-fast { animation: slide-fast 3s linear infinite; }
-        .animate-slide-slow { animation: slide-slow 5s linear infinite 1s; }
-        .animate-glow { animation: glow 3s ease-in-out infinite; }
-        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
-        .animate-scale-in { animation: scale-in 0.6s ease-out; }
-        .animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
-        .animate-slide-in-up { animation: slide-in-up 0.6s ease-out; }
-        .animate-fade-in { animation: fade-in 0.8s ease-out; }
-        .animate-bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
-        .animate-pulse-slow { animation: pulse-slow 2s ease-in-out infinite; }
-        .animate-shimmer { animation: shimmer 2s linear infinite; }
-        .animate-float-header { animation: float-header 3s ease-in-out infinite; }
       `}</style>
     </div>
   )
