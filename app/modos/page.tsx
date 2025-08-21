@@ -242,19 +242,6 @@ export default function ModosPage() {
             </div>
           </div>
         </div>
-
-        {/* Botón volver con más separación en computadoras */}
-        <div className={`flex-shrink-0 pb-6 pt-4 sm:pb-8 md:pb-10 flex justify-center transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{animationDelay: '0.8s'}}>
-          <button 
-            onClick={() => router.back()}
-            className="group relative bg-black/40 hover:bg-black/60 text-white font-medium py-3 px-6 sm:px-8 rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 backdrop-blur-lg shadow-xl"
-          >
-            <span className="flex items-center gap-3 text-sm sm:text-base">
-              <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span>
-              <span>Volver al inicio</span>
-            </span>
-          </button>
-        </div>
       </div>
 
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent"></div>
