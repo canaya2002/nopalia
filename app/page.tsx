@@ -91,7 +91,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
 
       {/* Contenido Principal */}
-      <div className="relative flex flex-col h-full px-4">
+      <div className="relative flex flex-col h-full px-4 min-h-screen">
         <div className="flex-1 flex items-center justify-center">
           <div className={`text-center transform transition-all duration-2000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
@@ -173,7 +173,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer mejorado */}
+        {/* Footer mejorado, fijado en la parte inferior */}
         <footer className={`relative bg-gradient-to-r from-black/50 via-emerald-900/60 to-black/50 backdrop-blur-sm text-white text-center py-6 border-t border-yellow-400/30 transform transition-all duration-1500 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`} style={{animationDelay: '2s'}}>
           <div className="px-4">
             <p className="text-sm sm:text-base font-medium">
@@ -192,7 +192,7 @@ export default function Home() {
         </footer>
       </div>
 
-      {/* Estilos CSS simplificados */}
+      {/* Estilos CSS actualizados */}
       <style jsx>{`
         @keyframes bounce-letter {
           0%, 100% { 
@@ -259,30 +259,57 @@ export default function Home() {
           }
         }
         
-        /* Fix para dispositivos móviles - elimina espacios en blanco */
+        /* Asegurar que no haya scroll no deseado */
         html, body {
+          margin: 0;
+          padding: 0;
           overflow: hidden;
           height: 100%;
-          position: fixed;
           width: 100%;
+          position: fixed;
+          overscroll-behavior: none;
+        }
+        
+        .h-screen {
+          height: 100vh;
+          max-height: 100vh;
+          overflow: hidden;
         }
         
         @supports (height: 100dvh) {
           .h-screen {
             height: 100dvh !important;
+            max-height: 100dvh !important;
           }
         }
         
-        @media (max-height: 700px) {
-          .h-screen {
-            height: 100vh !important;
-            height: 100dvh !important;
-          }
+        /* Contenedor principal con flexbox para fijar el footer */
+        .min-h-screen {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        
+        /* Asegurar que el footer esté en la parte inferior */
+        footer {
+          margin-top: auto;
+          width: 100%;
         }
         
         /* Prevenir scroll en cualquier dirección */
         * {
           overscroll-behavior: none;
+          -webkit-overflow-scrolling: none;
+        }
+        
+        /* Evitar que el contenido principal se desplace más allá del footer */
+        .flex-1 {
+          flex: 1 1 auto;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
     </div>
