@@ -21,7 +21,7 @@ export default function ModosPage() {
   }
 
   return (
-    <div className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
+    <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
       {/* Fondo mejorado con más elementos sutiles */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
@@ -37,7 +37,7 @@ export default function ModosPage() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30"></div>
       <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/20"></div>
 
-      <div className="relative flex flex-col h-full w-full">
+      <div className="relative flex flex-col h-full w-full min-h-full">
         <header className={`relative pt-12 sm:pt-16 md:pt-20 pb-8 md:pb-12 text-center transform transition-all duration-1500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4">
             <div className="relative inline-block mb-6">
@@ -48,14 +48,11 @@ export default function ModosPage() {
                 </span>
               </h1>
             </div>
-            <p className="text-emerald-200/90 text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-              Dos experiencias completamente diferentes para tu diversión
-            </p>
+            {/* Párrafo eliminado */}
           </div>
         </header>
 
-        {/* Contenedor de tarjetas con más padding-bottom */}
-        <div className="flex-1 flex items-start justify-center px-4 sm:px-6 pb-32 overflow-hidden">
+        <div className="flex-1 flex items-start justify-center px-4 sm:px-6 pb-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl w-full">
             {/* MODO 1: LA PEDACOPA */}
             <div 
@@ -131,6 +128,7 @@ export default function ModosPage() {
                     <p className="text-gray-200 text-sm leading-relaxed">
                       Inspirado en <span className="text-yellow-300 font-bold">"Peda" + "Copa del desmadre"</span>. 
                       Comienza con retos ligeros y escala progresivamente hasta llegar al nivel máximo de diversión. 
+                      Cada nivel aumenta la intensidad y la emoción.
                     </p>
                   </div>
                   <button className="w-full relative overflow-hidden bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 hover:from-yellow-400 hover:via-orange-400 hover:to-amber-400 text-black font-bold py-4 sm:py-5 px-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/30 group-hover:scale-[1.02] text-base sm:text-lg">
@@ -245,8 +243,8 @@ export default function ModosPage() {
           </div>
         </div>
 
-        {/* Botón volver con más padding-top */}
-        <div className={`flex-shrink-0 pb-6 pt-4 flex justify-center transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{animationDelay: '0.8s'}}>
+        {/* Botón volver con más separación en computadoras */}
+        <div className={`flex-shrink-0 pb-6 pt-4 sm:pb-8 md:pb-10 flex justify-center transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{animationDelay: '0.8s'}}>
           <button 
             onClick={() => router.back()}
             className="group relative bg-black/40 hover:bg-black/60 text-white font-medium py-3 px-6 sm:px-8 rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 backdrop-blur-lg shadow-xl"
@@ -274,9 +272,8 @@ export default function ModosPage() {
           height: 100%;
           overflow: hidden;
           position: fixed;
-          overscroll-behavior: none;
-          touch-action: none;
-          -webkit-overflow-scrolling: none;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
         }
         
         .fixed {
@@ -288,7 +285,7 @@ export default function ModosPage() {
           width: 100%;
           height: 100vh;
           max-height: 100vh;
-          overflow: hidden;
+          background-attachment: fixed;
         }
         
         @supports (height: 100dvh) {
@@ -303,17 +300,22 @@ export default function ModosPage() {
           width: 100%;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
-          touch-action: none;
+          min-height: 100%;
         }
         
         .flex-1 {
           flex: 1 1 auto;
-          overflow: hidden;
           display: flex;
           align-items: flex-start;
           justify-content: center;
           min-height: 0;
+        }
+        
+        @media (max-width: 640px) {
+          .flex-1 {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+          }
         }
         
         .flex-shrink-0 {
@@ -325,20 +327,13 @@ export default function ModosPage() {
         
         * {
           box-sizing: border-box;
-          overscroll-behavior: none;
-          -webkit-overflow-scrolling: none;
-          touch-action: none;
+          overscroll-behavior: contain;
         }
         
         @media (max-width: 640px) {
           .fixed {
             height: 100dvh;
             max-height: 100dvh;
-          }
-          
-          .flex-1 {
-            min-height: 0;
-            overflow: hidden;
           }
         }
         
