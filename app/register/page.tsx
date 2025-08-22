@@ -2,13 +2,16 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter()
   const [isLoaded, setIsLoaded] = useState(false)
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
@@ -27,38 +30,40 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError('Las contraseñas no coinciden')
+      return
+    }
+
+    if (formData.password.length < 6) {
+      setError('La contraseña debe tener al menos 6 caracteres')
+      return
+    }
+
     setIsSubmitting(true)
     setError('')
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }),
       })
 
       const data = await response.json()
 
       if (response.ok) {
-        // Guardar token y datos del usuario
-        if (data.token) {
-          localStorage.setItem('nopal_token', data.token)
-        }
-        
-        // Login exitoso - verificar si hay un nivel deseado guardado
-        const nivelDeseado = localStorage.getItem('nopal_nivel_deseado')
-        if (nivelDeseado) {
-          localStorage.removeItem('nopal_nivel_deseado')
-          // Redirigir de vuelta a niveles
-          router.push('/pedacopa/niveles')
-        } else {
-          // Redirigir al dashboard o página principal
-          router.push('/pedacopa/niveles')
-        }
+        // Registro exitoso - redirigir a pricing para suscripción
+        router.push('/pricing')
       } else {
-        setError(data.error || 'Error al iniciar sesión')
+        setError(data.error || 'Error al crear la cuenta')
       }
     } catch (error) {
       setError('Error de conexión. Intenta de nuevo.')
@@ -67,8 +72,8 @@ export default function LoginPage() {
     }
   }
 
-  const handleRegisterRedirect = () => {
-    router.push('/register')
+  const handleLoginRedirect = () => {
+    router.push('/login')
   }
 
   const handleBack = () => {
@@ -97,12 +102,12 @@ export default function LoginPage() {
               <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/10 via-white/10 to-emerald-400/10 blur-xl rounded-lg"></div>
               <h1 className="relative text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black">
                 <span className="bg-gradient-to-r from-emerald-100 via-white to-lime-100 bg-clip-text text-transparent drop-shadow-xl">
-                  Iniciar Sesión
+                  Crear Cuenta Premium
                 </span>
               </h1>
             </div>
             <p className="text-emerald-200/90 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-              Accede a tu cuenta para continuar con NOPAL
+              Desbloquea todos los niveles y disfruta la experiencia completa de NOPAL
             </p>
           </div>
         </header>
@@ -123,7 +128,7 @@ export default function LoginPage() {
 
             {/* Formulario */}
             <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-green-400/15 via-emerald-500/20 to-lime-400/15 rounded-xl blur-lg opacity-75"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-yellow-400/15 via-orange-500/20 to-amber-400/15 rounded-xl blur-lg opacity-75"></div>
               <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-xl border border-white/30 rounded-xl shadow-2xl p-6 sm:p-8">
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -136,6 +141,22 @@ export default function LoginPage() {
                   <div className="space-y-4">
                     <div>
                       <label className="block text-white font-semibold text-sm mb-2">
+                        Nombre completo
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Tu nombre"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-yellow-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-white font-semibold text-sm mb-2">
                         Correo electrónico
                       </label>
                       <input
@@ -144,7 +165,7 @@ export default function LoginPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="tu@email.com"
-                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-green-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-yellow-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
                         required
                         disabled={isSubmitting}
                       />
@@ -159,8 +180,25 @@ export default function LoginPage() {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        placeholder="Tu contraseña"
-                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-green-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        placeholder="Mínimo 6 caracteres"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-yellow-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        required
+                        disabled={isSubmitting}
+                        minLength={6}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-white font-semibold text-sm mb-2">
+                        Confirmar contraseña
+                      </label>
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        placeholder="Repite tu contraseña"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-yellow-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
                         required
                         disabled={isSubmitting}
                       />
@@ -169,20 +207,20 @@ export default function LoginPage() {
 
                   <button
                     type="submit"
-                    disabled={isSubmitting || !formData.email || !formData.password}
-                    className="w-full relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 hover:from-green-400 hover:via-emerald-400 hover:to-lime-400 disabled:from-gray-600 disabled:via-gray-700 disabled:to-gray-600 text-white disabled:text-gray-300 font-bold py-4 px-6 rounded-lg text-base transition-all duration-300 hover:scale-[1.02] disabled:hover:scale-100 shadow-xl disabled:cursor-not-allowed"
+                    disabled={isSubmitting || !formData.name || !formData.email || !formData.password || !formData.confirmPassword}
+                    className="w-full relative overflow-hidden bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-500 hover:from-yellow-400 hover:via-orange-400 hover:to-amber-400 disabled:from-gray-600 disabled:via-gray-700 disabled:to-gray-600 text-black disabled:text-gray-300 font-bold py-4 px-6 rounded-lg text-base transition-all duration-300 hover:scale-[1.02] disabled:hover:scale-100 shadow-xl disabled:cursor-not-allowed"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-3">
                       {isSubmitting ? (
                         <>
-                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span>Iniciando sesión...</span>
+                          <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
+                          <span>Creando cuenta...</span>
                         </>
                       ) : (
                         <>
-                          <span>Iniciar Sesión</span>
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                          <span>Crear Cuenta Premium</span>
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
                         </>
                       )}
@@ -197,13 +235,13 @@ export default function LoginPage() {
                   <div className="flex-1 h-px bg-white/20"></div>
                 </div>
 
-                {/* Register redirect */}
+                {/* Login redirect */}
                 <button
-                  onClick={handleRegisterRedirect}
+                  onClick={handleLoginRedirect}
                   disabled={isSubmitting}
                   className="w-full bg-white/10 hover:bg-white/15 text-white font-medium py-3 px-6 rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300 text-base"
                 >
-                  ¿No tienes cuenta? Regístrate
+                  ¿Ya tienes cuenta? Inicia sesión
                 </button>
               </div>
             </div>
@@ -228,7 +266,7 @@ export default function LoginPage() {
       </div>
 
       {/* Elementos decorativos */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent"></div>
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent"></div>
       
       <style jsx>{`

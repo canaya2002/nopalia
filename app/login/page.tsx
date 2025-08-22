@@ -42,11 +42,6 @@ export default function LoginPage() {
       const data = await response.json()
 
       if (response.ok) {
-        // Guardar token y datos del usuario
-        if (data.token) {
-          localStorage.setItem('nopal_token', data.token)
-        }
-        
         // Login exitoso - verificar si hay un nivel deseado guardado
         const nivelDeseado = localStorage.getItem('nopal_nivel_deseado')
         if (nivelDeseado) {

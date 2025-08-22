@@ -13,122 +13,76 @@ interface Jugador {
 const niveles = [
   {
     id: 1,
-    titulo: "Casa Tranquila",
-    subtitulo: "¿Quién trae las chelas?",
+    titulo: "Precopeo",
+    subtitulo: "Empecemos suave",
     intensidad: "Suave",
-    colorPrimario: "from-green-400 to-emerald-600",
-    colorSecundario: "from-green-500 to-emerald-700",
+    colorPrimario: "from-red-400 to-pink-500",
+    colorSecundario: "from-red-500 to-pink-600",
     icono: "home",
-    ambiente: "Sala normal, música suave, luces prendidas. El ambiente es relajado y todos están conociendo las reglas.",
+    ambiente: "Ambiente relajado, luces suaves, todos están listos para romper el hielo con risas y confesiones ligeras.",
     minijuegos: [
-      "Verdadero o Falso: Pierdes, bebes un trago",
-      "Memorama borracho: Cartas que se mueven si tomas",
-      "Charadas mexicanas: Si fallas, shotcito",
-      "Preguntas básicas: ¿Cuál es tu comida favorita?",
-      "Retos suaves: Canta una canción"
+      "Verdad o Reto: Preguntas ligeras",
+      "Charadas de fiesta: Si fallas, toma un sorbo",
+      "Adivina quién: Responde o bebe",
+      "Preguntas de calentamiento: ¿Cuál es tu peor cita?",
+      "Retos divertidos: Imita a alguien del grupo"
     ],
-    estado: "Apenas empieza la peda, leve risa, todo sano y divertido.",
+    estado: "Risas iniciales, todos se están conociendo, el ambiente es ligero y divertido.",
     duracion: "30-45 min",
     participantes: "2-12",
     dificultad: 1,
-    descripcion: "El nivel perfecto para empezar la fiesta. Retos suaves, risas garantizadas y un ambiente relajado donde todos se sienten cómodos.",
+    descripcion: "Perfecto para empezar la noche con retos y preguntas suaves que rompen el hielo y preparan a todos para la diversión.",
     isPremium: false
   },
   {
     id: 2,
-    titulo: "Precopeo",
-    subtitulo: "Ya sonó la cumbia",
+    titulo: "Fiesta",
+    subtitulo: "¡Sube el volumen!",
     intensidad: "Moderado",
-    colorPrimario: "from-yellow-400 to-orange-500",
-    colorSecundario: "from-yellow-500 to-orange-600",
+    colorPrimario: "from-pink-400 to-rose-500",
+    colorSecundario: "from-pink-500 to-rose-600",
     icono: "music",
-    ambiente: "Luces bajitas, alguien ya sacó bocinas. La música empieza a subir y el ambiente se calienta.",
+    ambiente: "Música animada, luces bajas, el grupo ya está entrando en confianza y la energía sube.",
     minijuegos: [
-      "La botella: Beso en la mejilla o shot",
-      "Stop con castigo: Si pierdes, reto o fondo",
-      "El vaso loco: Pasar un vaso con la boca",
-      "Verdad o reto: Nivel intermedio",
-      "Baile en pareja: Sígueme el ritmo"
+      "Verdad o Reto: Nivel intermedio",
+      "Beso o trago: Decide rápido",
+      "Yo Nunca Nunca: Confiesa o bebe",
+      "Reto de baile: Muestra tus pasos",
+      "Preguntas picantes: ¿Qué harías en una isla desierta?"
     ],
-    estado: "Ya se ríen más fuerte, hay roce, el calor sube y empieza el coqueteo.",
+    estado: "El ambiente se calienta, las risas se mezclan con coqueteos y todos están más sueltos.",
     duracion: "45-60 min",
     participantes: "3-12",
     dificultad: 2,
-    descripcion: "La temperatura sube y los retos se vuelven más interesantes. El precopeo perfecto antes del verdadero desmadre.",
+    descripcion: "La fiesta está en su punto. Retos y preguntas más atrevidas que llevan la diversión al siguiente nivel.",
     isPremium: true
   },
   {
     id: 3,
-    titulo: "La Hora del Desmadre",
-    subtitulo: "Shots y decisiones malas",
+    titulo: "Calentémonos",
+    subtitulo: "¡Que arda la noche!",
     intensidad: "Intenso",
-    colorPrimario: "from-red-400 to-pink-600",
-    colorSecundario: "from-red-500 to-pink-700",
+    colorPrimario: "from-rose-400 to-red-600",
+    colorSecundario: "from-rose-500 to-red-700",
     icono: "fire",
-    ambiente: "Música alta, luces LED, gente bailando. El ambiente está caliente y todos están en confianza.",
+    ambiente: "Luces LED, música a todo volumen, todos están en confianza y listos para retos más subidos de tono.",
     minijuegos: [
-      "Yo Nunca Nunca: Si bebes 3 veces, haces un reto",
-      "Ruleta Picante: Beso, fondo, confiesa, baila sexy",
-      "Desafío Nopal: Minijuego random de baile",
-      "Strip poker light: Prendas por puntos",
-      "Confesiones íntimas: Di tu secreto más raro"
+      "Verdad o Reto: Nivel avanzado",
+      "Ruleta del beso: Beso o reto extremo",
+      "Confesiones calientes: Secretos jugosos",
+      "Reto físico: Acércate a alguien",
+      "Yo Nunca Nunca: Edición picante"
     ],
-    estado: "Todos entrados, empieza el coqueteo descarado y las risas fuertes.",
+    estado: "Coqueteos abiertos, risas fuertes, la noche está en su punto más alto.",
     duracion: "60-90 min",
     participantes: "4-12",
     dificultad: 3,
-    descripcion: "Aquí es donde la fiesta realmente despega. Retos más atrevidos, confesiones picantes y mucha diversión descontrolada.",
-    isPremium: true
-  },
-  {
-    id: 4,
-    titulo: "El After Salvaje",
-    subtitulo: "¿Quién trajo al ex?",
-    intensidad: "Extremo",
-    colorPrimario: "from-purple-500 to-red-600",
-    colorSecundario: "from-purple-600 to-red-700",
-    icono: "zap",
-    ambiente: "Cuarto oscuro con neón, ropa en el sillón, nadie sabe la hora. El ambiente está al máximo.",
-    minijuegos: [
-      "Verdad extrema o reto fuerte",
-      "Jenga erótica: Cada pieza tiene besos y bailes",
-      "Chupito Challenge: Beber de cuerpo ajeno",
-      "Strip challenge: Batalla de baile",
-      "Confesiones prohibidas: Lo que nunca has dicho"
-    ],
-    estado: "Calor, ligues fuertes, ya nadie quiere irse. Todo está permitido.",
-    duracion: "90+ min",
-    participantes: "4-8",
-    dificultad: 4,
-    descripcion: "El nivel más salvaje. Solo para los más atrevidos que buscan una experiencia sin límites y completamente desenfrenada.",
-    isPremium: true
-  },
-  {
-    id: 5,
-    titulo: "El Mictlán del Crudo",
-    subtitulo: "Lo que pasa en Nopal, se queda en Nopal",
-    intensidad: "Legendario",
-    colorPrimario: "from-gray-600 to-black",
-    colorSecundario: "from-gray-700 to-gray-900",
-    icono: "skull",
-    ambiente: "Desorden total, luces prendidas, alguien en el suelo. El caos más divertido de la noche.",
-    minijuegos: [
-      "El Recuerdo Maldito: Adivina lo que hiciste anoche",
-      "Reto Castigo: Si no recuerdas, castigo eterno",
-      "El Strip-Final Boss: Batalla épica de dignidad",
-      "Confesión final: El secreto más oscuro",
-      "La prueba definitiva: ¿Sobreviviste?"
-    ],
-    estado: "Todo fue increíble o una vergüenza total. Pero definitivamente repetirías.",
-    duracion: "2+ horas",
-    participantes: "2-6",
-    dificultad: 5,
-    descripcion: "El nivel legendario donde se forjan las leyendas. Solo para sobrevivientes de fiestas épicas que buscan la experiencia definitiva.",
+    descripcion: "El nivel donde todo se descontrola. Retos y preguntas picantes que garantizan una noche inolvidable.",
     isPremium: true
   }
 ]
 
-export default function NivelesPage() {
+export default function NivelesVerdadORetoPage() {
   const router = useRouter()
   const [isLoaded, setIsLoaded] = useState(false)
   const [jugadores, setJugadores] = useState<Jugador[]>([])
@@ -142,16 +96,16 @@ export default function NivelesPage() {
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100)
     
-    const jugadoresGuardados = localStorage.getItem('nopal_jugadores')
+    const jugadoresGuardados = localStorage.getItem('verdad_reto_jugadores')
     if (jugadoresGuardados) {
       try {
         setJugadores(JSON.parse(jugadoresGuardados))
       } catch (error) {
         console.error('Error cargando jugadores:', error)
-        router.push('/pedacopa/jugadores')
+        router.push('/verdad-o-reto/jugadores')
       }
     } else {
-      router.push('/pedacopa/jugadores')
+      router.push('/verdad-o-reto/jugadores')
     }
     
     return () => clearTimeout(timer)
@@ -161,7 +115,7 @@ export default function NivelesPage() {
     const nivel = niveles.find(n => n.id === nivelId)
     
     if (nivel?.isPremium) {
-      localStorage.setItem('nopal_nivel_deseado', nivelId.toString())
+      localStorage.setItem('verdad_reto_nivel_deseado', nivelId.toString())
       router.push('/register')
       return
     }
@@ -174,15 +128,15 @@ export default function NivelesPage() {
       const nivel = niveles.find(n => n.id === nivelSeleccionado)
       
       if (nivel?.isPremium) {
-        localStorage.setItem('nopal_nivel_deseado', nivelSeleccionado.toString())
+        localStorage.setItem('verdad_reto_nivel_deseado', nivelSeleccionado.toString())
         router.push('/register')
         return
       }
       
-      localStorage.setItem('nopal_nivel_actual', nivelSeleccionado.toString())
-      localStorage.setItem('nopal_jugadores_partida', JSON.stringify(jugadores))
+      localStorage.setItem('verdad_reto_nivel_actual', nivelSeleccionado.toString())
+      localStorage.setItem('verdad_reto_jugadores_partida', JSON.stringify(jugadores))
       
-      router.push(`/pedacopa/nivel${nivelSeleccionado}`)
+      router.push(`/verdad-o-reto/nivel${nivelSeleccionado}`)
     }
   }
 
@@ -227,12 +181,12 @@ export default function NivelesPage() {
   }
 
   const getDifficultyStars = (dificultad: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
+    return Array.from({ length: 3 }, (_, i) => (
       <div
         key={i}
         className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
           i < dificultad 
-            ? 'bg-amber-400 shadow-md shadow-amber-400/50 scale-110' 
+            ? 'bg-rose-400 shadow-md shadow-rose-400/50 scale-110' 
             : 'bg-gray-600 scale-90'
         }`}
       />
@@ -259,18 +213,6 @@ export default function NivelesPage() {
             <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
           </svg>
         )
-      case 'zap':
-        return (
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-          </svg>
-        )
-      case 'skull':
-        return (
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.11 7.24.39.37.39.97 0 1.34C4.73 20.96 4.37 21 4 21h16c-.37 0-.73-.04-1.11-.42-.39-.37-.39-.97 0-1.34C20.8 17.41 22 14.85 22 12c0-5.52-4.48-10-10-10zM8.5 9c.83 0 1.5.67 1.5 1.5S9.33 12 8.5 12 7 11.33 7 10.5 7.67 9 8.5 9zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5S14.67 9 15.5 9zm-3.5 6c-1.33 0-2.42.84-2.83 2h5.66c-.41-1.16-1.5-2-2.83-2z"/>
-          </svg>
-        )
       default:
         return (
           <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -284,25 +226,32 @@ export default function NivelesPage() {
   const isCurrentLevelPremium = currentLevel.isPremium
 
   return (
-    <div className="fixed inset-0 w-full min-h-screen max-h-[100dvh] bg-gradient-to-br from-emerald-950 to-lime-900 overflow-hidden">
+    <div className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900">
       {/* Fondo dinámico */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30 backdrop-blur-sm">
-        <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-yellow-400/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s' }}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-emerald-400/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }}></div>
+      <div className="absolute inset-0 opacity-25">
+        <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-red-400/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-pink-400/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s', animationDuration: '5s' }}></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-red-400/50 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
+        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-rose-400/40 rounded-full animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+        <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-pink-400/30 rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
+        <div className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-red-400/40 rounded-full animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3.5s'}}></div>
+        <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/15 to-transparent"></div>
+        <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-pink-400/15 to-transparent"></div>
       </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30"></div>
 
       {/* Esquinas decorativas */}
-      <div className="absolute top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-yellow-400/20 rounded-tl-lg"></div>
-      <div className="absolute top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-emerald-400/20 rounded-tr-lg"></div>
-      <div className="absolute bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-lime-400/20 rounded-bl-lg"></div>
-      <div className="absolute bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-cyan-400/20 rounded-br-lg"></div>
+      <div className="absolute top-4 left-4 w-16 h-16 border-l-2 border-t-2 border-red-400/20 rounded-tl-lg"></div>
+      <div className="absolute top-4 right-4 w-16 h-16 border-r-2 border-t-2 border-pink-400/20 rounded-tr-lg"></div>
+      <div className="absolute bottom-4 left-4 w-16 h-16 border-l-2 border-b-2 border-rose-400/20 rounded-bl-lg"></div>
+      <div className="absolute bottom-4 right-4 w-16 h-16 border-r-2 border-b-2 border-red-400/20 rounded-br-lg"></div>
 
       {/* Layout principal */}
       <div className="relative h-full flex flex-col pt-8 sm:pt-12">
         {/* Header */}
         <header className={`flex-shrink-0 pb-4 text-center transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-emerald-100 to-lime-100 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-red-100 via-pink-100 to-rose-100 bg-clip-text text-transparent">
               Elige tu Nivel
             </h1>
           </div>
@@ -310,12 +259,12 @@ export default function NivelesPage() {
 
         {/* Contenido principal */}
         <div
-          className="flex-1 overflow-y-auto px-2 sm:px-4 pb-6"
+          className="flex-1 flex flex-col items-center justify-start px-2 sm:px-4 pt-4 pb-8 overflow-visible"
           style={{ paddingTop: 'env(safe-area-inset-top)' }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div className="max-w-lg mx-auto pt-4 sm:pt-6">
+          <div className="max-w-lg mx-auto">
             {/* Tarjeta del nivel */}
             <div
               className={`group relative cursor-pointer transform transition-all duration-600 mb-6 shadow-lg ${
@@ -331,8 +280,8 @@ export default function NivelesPage() {
                 <div
                   className={`absolute top-3 left-3 px-3 py-1 text-sm font-bold rounded-full z-10 ${
                     isCurrentLevelPremium
-                      ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
-                      : 'bg-gradient-to-r from-green-400 to-emerald-500 text-white'
+                      ? 'bg-gradient-to-r from-red-400 to-pink-500 text-black'
+                      : 'bg-gradient-to-r from-red-500 to-rose-500 text-white'
                   }`}
                 >
                   {isCurrentLevelPremium ? 'PREMIUM' : 'GRATIS'}
@@ -364,7 +313,7 @@ export default function NivelesPage() {
                   <div className="flex justify-center">
                     <div className="bg-white/10 rounded-lg p-4 sm:p-5 border border-white/20 hover:border-white/30 transition-all duration-300 w-full max-w-sm">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-pink-500 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
@@ -377,7 +326,7 @@ export default function NivelesPage() {
 
                   <div className="bg-white/10 rounded-lg p-4 sm:p-5 border border-white/20">
                     <h4 className="text-white font-bold text-base mb-3 flex items-center gap-3">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-rose-500 rounded-lg flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
@@ -388,16 +337,16 @@ export default function NivelesPage() {
                   </div>
 
                   {isCurrentLevelPremium && (
-                    <div className="bg-yellow-900/20 rounded-lg p-4 sm:p-5 border border-yellow-400/30">
+                    <div className="bg-rose-900/20 rounded-lg p-4 sm:p-5 border border-rose-400/30">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-pink-500 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
                           </svg>
                         </div>
-                        <h4 className="text-yellow-200 font-bold text-base">NIVEL PREMIUM</h4>
+                        <h4 className="text-rose-200 font-bold text-base">NIVEL PREMIUM</h4>
                       </div>
-                      <p className="text-yellow-100 text-base">
+                      <p className="text-rose-100 text-base">
                         Este nivel requiere cuenta premium. Regístrate y suscríbete para desbloquear esta experiencia.
                       </p>
                     </div>
@@ -424,45 +373,45 @@ export default function NivelesPage() {
                       expandedCard ? 'max-h-none opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
                     }`}
                   >
-                    <div className="bg-blue-500/10 rounded-lg p-4 sm:p-5 border border-blue-400/30">
+                    <div className="bg-pink-500/10 rounded-lg p-4 sm:p-5 border border-pink-400/30">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-red-400 to-rose-500 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
                         </div>
-                        <h4 className="text-blue-300 font-bold text-base">AMBIENTE</h4>
+                        <h4 className="text-pink-300 font-bold text-base">AMBIENTE</h4>
                       </div>
                       <p className="text-white text-base">{currentLevel.ambiente}</p>
                     </div>
 
-                    <div className="bg-green-500/10 rounded-lg p-4 sm:p-5 border border-green-400/30">
+                    <div className="bg-rose-500/10 rounded-lg p-4 sm:p-5 border border-rose-400/30">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-pink-400 to-red-500 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M21,6V8H3V6H21M3,18H12V16H3V18M3,13H21V11H3V13Z"/>
                           </svg>
                         </div>
-                        <h4 className="text-green-300 font-bold text-base">MINIJUEGOS ({currentLevel.minijuegos.length})</h4>
+                        <h4 className="text-rose-300 font-bold text-base">MINIJUEGOS ({currentLevel.minijuegos.length})</h4>
                       </div>
                       <div className="space-y-3">
                         {currentLevel.minijuegos.map((juego, index) => (
                           <div key={index} className="flex items-start gap-3 p-2 rounded-md bg-white/5">
-                            <div className="w-2.5 h-2.5 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-2.5 h-2.5 bg-rose-400 rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-white text-base">{juego}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="bg-orange-500/10 rounded-lg p-4 sm:p-5 border border-orange-400/30">
+                    <div className="bg-red-500/10 rounded-lg p-4 sm:p-5 border border-red-400/30">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-rose-400 to-pink-500 rounded-lg flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                           </svg>
                         </div>
-                        <h4 className="text-orange-300 font-bold text-base">ESTADO DEL JUGADOR</h4>
+                        <h4 className="text-red-300 font-bold text-base">ESTADO DEL JUGADOR</h4>
                       </div>
                       <p className="text-white text-base">{currentLevel.estado}</p>
                     </div>
@@ -472,10 +421,10 @@ export default function NivelesPage() {
                     onClick={() => handleSeleccionarNivel(currentLevel.id)}
                     className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105 ${
                       nivelSeleccionado === currentLevel.id
-                        ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
+                        ? 'bg-gradient-to-r from-red-400 to-pink-500 text-black'
                         : isCurrentLevelPremium
-                        ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:from-yellow-400 hover:to-orange-400'
-                        : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-400 hover:to-emerald-400'
+                        ? 'bg-gradient-to-r from-red-500 to-rose-500 text-black hover:from-red-400 hover:to-rose-400'
+                        : 'bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:from-pink-400 hover:to-rose-400'
                     }`}
                     aria-label={nivelSeleccionado === currentLevel.id ? 'Nivel seleccionado' : isCurrentLevelPremium ? 'Desbloquear nivel premium' : 'Seleccionar nivel gratis'}
                   >
@@ -505,13 +454,26 @@ export default function NivelesPage() {
                 </div>
 
                 {nivelSeleccionado === currentLevel.id && !isCurrentLevelPremium && (
-                  <div className="absolute top-3 right-3 w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                  <div className="absolute top-3 right-3 w-10 h-10 bg-gradient-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
                     <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                     </svg>
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Botón Volver al inicio */}
+            <div className={`mt-8 sm:mt-12 flex justify-center transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{animationDelay: '0.5s'}}>
+              <button 
+                onClick={() => router.back()}
+                className="group relative bg-black/40 hover:bg-black/60 text-white font-medium py-3 px-6 sm:px-8 rounded-xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 backdrop-blur-lg shadow-xl"
+              >
+                <span className="flex items-center gap-3 text-sm sm:text-base">
+                  <span className="transform group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                  <span>Volver al inicio</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -539,7 +501,7 @@ export default function NivelesPage() {
                 {nivelSeleccionado && !isCurrentLevelPremium ? (
                   <button
                     onClick={handleComenzarJuego}
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-bold py-4 rounded-lg hover:scale-105 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-400 hover:to-rose-400 text-white font-bold py-4 rounded-lg hover:scale-105 transition-all duration-300"
                     aria-label="Comenzar juego"
                   >
                     <span className="flex items-center justify-center gap-3">
@@ -587,8 +549,9 @@ export default function NivelesPage() {
           height: 100%;
           overflow: hidden;
           position: fixed;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: none;
+          touch-action: none;
+          -webkit-overflow-scrolling: none;
         }
         
         .fixed {
@@ -600,12 +563,54 @@ export default function NivelesPage() {
           width: 100%;
           height: 100dvh;
           max-height: 100dvh;
-          background-attachment: fixed;
+          overflow: hidden;
+        }
+        
+        .h-full {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          touch-action: none;
+        }
+        
+        .flex-1 {
+          flex: 1 1 auto;
+          overflow: visible;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          min-height: 0;
+          padding-top: 1rem;
+        }
+        
+        .mt-8 {
+          margin-top: 2rem;
+        }
+        
+        .sm\:mt-12 {
+          margin-top: 3rem;
         }
         
         * {
           box-sizing: border-box;
-          overscroll-behavior: contain;
+          overscroll-behavior: none;
+          -webkit-overflow-scrolling: none;
+          touch-action: none;
+        }
+        
+        @media (max-width: 640px) {
+          .fixed {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
+          
+          .flex-1 {
+            min-height: 0;
+            overflow: visible;
+          }
         }
         
         @keyframes pulse {

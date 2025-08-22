@@ -46,6 +46,7 @@ export default function Home() {
     
     button.appendChild(ripple)
     
+    // CORRECCIÓN: Ir a /modos en lugar de /pedacopa/niveles
     setTimeout(() => {
       router.push('/modos')
     }, 300)
