@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function LoginPage() {
+export default function LoginVerdadORetoPage() {
   const router = useRouter()
   const [isLoaded, setIsLoaded] = useState(false)
   const [formData, setFormData] = useState({
@@ -44,18 +44,18 @@ export default function LoginPage() {
       if (response.ok) {
         // Guardar token y datos del usuario
         if (data.token) {
-          localStorage.setItem('nopal_token', data.token)
+          localStorage.setItem('verdad_reto_token', data.token)
         }
         
         // Login exitoso - verificar si hay un nivel deseado guardado
-        const nivelDeseado = localStorage.getItem('nopal_nivel_deseado')
+        const nivelDeseado = localStorage.getItem('verdad_reto_nivel_deseado')
         if (nivelDeseado) {
-          localStorage.removeItem('nopal_nivel_deseado')
+          localStorage.removeItem('verdad_reto_nivel_deseado')
           // Redirigir de vuelta a niveles
-          router.push('/pedacopa/niveles')
+          router.push('/verdad-o-reto/niveles')
         } else {
-          // Redirigir al dashboard o página principal
-          router.push('/pedacopa/niveles')
+          // Redirigir a niveles por defecto
+          router.push('/verdad-o-reto/niveles')
         }
       } else {
         setError(data.error || 'Error al iniciar sesión')
@@ -78,13 +78,15 @@ export default function LoginPage() {
   return (
     <div className="fixed inset-0 w-full h-[100dvh] bg-gradient-to-br from-emerald-950 via-green-900 to-lime-900 overflow-hidden">
       {/* Fondo decorativo */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-yellow-400/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-400/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}></div>
-        <div className="absolute top-20 left-10 w-2 h-2 bg-yellow-400/60 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
-        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-orange-400/50 rounded-full animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
-        <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-lime-400/40 rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
-        <div className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-amber-400/50 rounded-full animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3.5s'}}></div>
+      <div className="absolute inset-0 opacity-25">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-400/10 rounded-full blur-xl animate-pulse" style={{animationDuration: '4s'}}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-pink-400/10 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '6s'}}></div>
+        <div className="absolute top-20 left-10 w-2 h-2 bg-red-400/50 rounded-full animate-pulse" style={{animationDuration: '3s'}}></div>
+        <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-rose-400/40 rounded-full animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+        <div className="absolute bottom-40 left-1/3 w-2 h-2 bg-pink-400/30 rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
+        <div className="absolute bottom-20 right-1/3 w-1.5 h-1.5 bg-red-400/40 rounded-full animate-pulse" style={{animationDelay: '0.5s', animationDuration: '3.5s'}}></div>
+        <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/15 to-transparent"></div>
+        <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-pink-400/15 to-transparent"></div>
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-emerald-900/30"></div>
@@ -94,15 +96,15 @@ export default function LoginPage() {
         <header className={`pt-8 sm:pt-12 pb-6 text-center transform transition-all duration-1500 ${isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4">
             <div className="relative inline-block mb-4">
-              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/10 via-white/10 to-emerald-400/10 blur-xl rounded-lg"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-red-400/10 via-pink-500/10 to-rose-400/10 blur-xl rounded-lg"></div>
               <h1 className="relative text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black">
-                <span className="bg-gradient-to-r from-emerald-100 via-white to-lime-100 bg-clip-text text-transparent drop-shadow-xl">
+                <span className="bg-gradient-to-r from-red-100 via-pink-100 to-rose-100 bg-clip-text text-transparent drop-shadow-xl">
                   Iniciar Sesión
                 </span>
               </h1>
             </div>
-            <p className="text-emerald-200/90 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-              Accede a tu cuenta para continuar con NOPAL
+            <p className="text-red-200/90 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+              Accede a tu cuenta para continuar con Verdad o Reto
             </p>
           </div>
         </header>
@@ -111,19 +113,19 @@ export default function LoginPage() {
         <div className="flex-1 flex items-center justify-center px-4 sm:px-6 pb-8">
           <div className={`w-full max-w-md transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`} style={{animationDelay: '0.3s'}}>
             
-            {/* Logo/Imagen del nopal */}
+            {/* Logo/Imagen */}
             <div className="text-center mb-8">
               <div className="relative inline-block">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-3 border-yellow-400/50 shadow-xl bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center">
-                  <div className="text-4xl">🌵</div>
+                <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full overflow-hidden border-3 border-red-400/50 shadow-xl bg-gradient-to-br from-red-600 to-pink-600 flex items-center justify-center">
+                  <div className="text-4xl">🔥</div>
                 </div>
-                <div className="absolute -inset-2 bg-yellow-400/20 rounded-full blur-lg animate-pulse"></div>
+                <div className="absolute -inset-2 bg-pink-400/20 rounded-full blur-lg animate-pulse"></div>
               </div>
             </div>
 
             {/* Formulario */}
             <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-green-400/15 via-emerald-500/20 to-lime-400/15 rounded-xl blur-lg opacity-75"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-red-400/15 via-pink-500/20 to-rose-400/15 rounded-xl blur-lg opacity-75"></div>
               <div className="relative bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95 backdrop-blur-xl border border-white/30 rounded-xl shadow-2xl p-6 sm:p-8">
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -144,7 +146,7 @@ export default function LoginPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="tu@email.com"
-                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-green-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-pink-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
                         required
                         disabled={isSubmitting}
                       />
@@ -160,7 +162,7 @@ export default function LoginPage() {
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Tu contraseña"
-                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-green-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
+                        className="w-full p-4 rounded-lg bg-white/15 text-white placeholder-gray-300 border border-white/25 focus:border-pink-400 focus:outline-none text-base font-medium backdrop-blur-sm transition-all duration-300"
                         required
                         disabled={isSubmitting}
                       />
@@ -170,7 +172,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting || !formData.email || !formData.password}
-                    className="w-full relative overflow-hidden bg-gradient-to-r from-green-500 via-emerald-500 to-lime-500 hover:from-green-400 hover:via-emerald-400 hover:to-lime-400 disabled:from-gray-600 disabled:via-gray-700 disabled:to-gray-600 text-white disabled:text-gray-300 font-bold py-4 px-6 rounded-lg text-base transition-all duration-300 hover:scale-[1.02] disabled:hover:scale-100 shadow-xl disabled:cursor-not-allowed"
+                    className="w-full relative overflow-hidden bg-gradient-to-r from-red-500 via-pink-500 to-rose-500 hover:from-red-400 hover:via-pink-400 hover:to-rose-400 disabled:from-gray-600 disabled:via-gray-700 disabled:to-gray-600 text-white disabled:text-gray-300 font-bold py-4 px-6 rounded-lg text-base transition-all duration-300 hover:scale-[1.02] disabled:hover:scale-100 shadow-xl disabled:cursor-not-allowed"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-3">
                       {isSubmitting ? (
@@ -228,8 +230,12 @@ export default function LoginPage() {
       </div>
 
       {/* Elementos decorativos */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent"></div>
+      <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-red-400/20 rounded-tl-lg"></div>
+      <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-pink-400/20 rounded-tr-lg"></div>
+      <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-rose-400/20 rounded-bl-lg"></div>
+      <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-red-400/20 rounded-br-lg"></div>
       
       <style jsx>{`
         html, body {
@@ -239,8 +245,9 @@ export default function LoginPage() {
           height: 100%;
           overflow: hidden;
           position: fixed;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: none;
+          touch-action: none;
+          -webkit-overflow-scrolling: none;
         }
         
         .fixed {
@@ -250,21 +257,32 @@ export default function LoginPage() {
           right: 0;
           bottom: 0;
           width: 100%;
-          height: 100vh;
-          max-height: 100vh;
-          background-attachment: fixed;
+          height: 100dvh;
+          max-height: 100dvh;
+          overflow: hidden;
         }
         
-        @supports (height: 100dvh) {
-          .fixed {
-            height: 100dvh;
-            max-height: 100dvh;
-          }
+        .h-full {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          touch-action: none;
         }
         
         * {
           box-sizing: border-box;
-          overscroll-behavior: contain;
+          overscroll-behavior: none;
+          -webkit-overflow-scrolling: none;
+          touch-action: none;
+        }
+        
+        @media (max-width: 640px) {
+          .fixed {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
         }
         
         @keyframes pulse {
